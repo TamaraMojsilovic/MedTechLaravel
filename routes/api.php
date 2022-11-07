@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LekarController;
@@ -16,15 +17,18 @@ use App\Http\Controllers\PacijentController;
 |
 */
 
-Route::get('lekar', [LekarController::class, 'index']);
-Route::get('lekar/{lekar}', [LekarController::class, 'show']);
-Route::delete('lekar/{lekar}', [LekarController::class, 'destroy']);
 
-Route::get('pacijent', [PacijentController::class, 'index']);
-Route::get('pacijent/{pacijent}', [PacijentController::class, 'show']);
-Route::post('pacijent', [PacijentController::class, 'store']);
+Route::post('register', [AuthController::class, 'register']);
+Route::post('login', [AuthController::class, 'login']);
 
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('lekar', [LekarController::class, 'index']);
+    Route::get('lekar/{lekar}', [LekarController::class, 'show']);
+    Route::delete('lekar/{lekar}', [LekarController::class, 'destroy']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    Route::get('pacijent', [PacijentController::class, 'index']);
+    Route::get('pacijent/{pacijent}', [PacijentController::class, 'show']);
+    Route::post('pacijent', [PacijentController::class, 'store']);
+
+    Route::post('logout', [AuthController::class, 'logout']);
 });
