@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\LekarSeeder;
+use Database\Seeders\PacijentSeeder;
+use Database\Seeders\PregledSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +16,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $lekarSeed = new LekarSeeder();
+        $pacijentSeed = new PacijentSeeder();
+        $pregledSeed = new PregledSeeder();
+
+        $lekarSeed->run();
+        $pacijentSeed->run();
+        $pregledSeed->run();
     }
 }

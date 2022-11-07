@@ -10,6 +10,13 @@ class Lekar extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'ime',
+        'prezime',
+        'specijalizacija',
+        'broj_telefona',
+    ];
+
     public function pregledi()
     {
         return $this->hasMany(Pregled::class);

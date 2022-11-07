@@ -10,6 +10,12 @@ class Pacijent extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'ime',
+        'prezime',
+        'broj_telefona'
+    ];
+
     public function pregledi()
     {
         return $this->hasMany(Pregled::class);

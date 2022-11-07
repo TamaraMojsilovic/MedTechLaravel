@@ -11,6 +11,12 @@ class Pregled extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'datum',
+        'lekar_id',
+        'pacijent_id'
+    ];
+
     public function lekar()
     {
         return $this->belongsTo(Lekar::class);
